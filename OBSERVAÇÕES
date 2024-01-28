@@ -1,0 +1,28 @@
+----------------
+
+EVENTOS DE COMANDOS DE ADMIN SERÃO TRANSFERIDOS PARA O ug-admin
+
+CLIENT:
+UgCore.Functions.SpawnObject >> UgCore.Functions.CreateObject
+UgCore.Functions.SpawnLocalObject >> UgCore.Functions.CreateObject
+
+UgCore.Functions.SpawnVehicle >> UgCore.Functions.CreateVehicle
+UgCore.Functions.SpawnLocalVehicle >> UgCore.Functions.CreateVehicle
+
+
+SERVER:
+UgCore.OneSync.Functions.SpawnVehicle >> UgCore.OneSync.Functions.CreateVehicle
+UgCore.OneSync.Functions.SpawnObject >> UgCore.OneSync.Functions.CreateObject
+UgCore.OneSync.Functions.SpawnPed >> UgCore.OneSync.Functions.CreatePed
+UgCore.OneSync.Functions.SpawnPedInVehicle >> UgCore.OneSync.Functions.CreatePedInVehicle
+
+UgCore.Functions.IsPlayerAdmin >> UgCore.Functions.IsPlayerAdmin
+UgCore.Functions.DoesJobExist >> UgCore.Functions.DoesJobExists
+UgCore.Functions.RegisterUsableItem >> UgCore.Functions.CreateItem
+
+player.set >> player.Functions.SetData
+player.get >> player.Functions.GetData
+player.setMeta >> player.Functions.SetMetaData
+player.getMeta >> player.Functions.GetMetaData
+player.triggerEvent >> player.Functions.TriggerEvent
+player.addInventoryItem >> player.GiveItem
