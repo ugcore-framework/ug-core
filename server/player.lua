@@ -198,6 +198,10 @@ function UgCore.Player.CreatePlayer(playerId, identifier, data)
 		end
     end
 
+	function self.Functions.GetMoney(accountName)
+		return self.Functions.GetAccount(accountName).money
+	end
+
     function self.Functions.GiveMoney(accountName, amount, reason)
         reason = reason or 'unknown'
 		if not tonumber(amount) then
