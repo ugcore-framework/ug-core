@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 	`dateOfBirth` VARCHAR(10) NULL DEFAULT NULL,
 	`sex` VARCHAR(1) NULL DEFAULT NULL,
 	`height` INT NULL DEFAULT NULL,
-    PRIMARY KEY (`identifier`),
-    KEY `id` (`id`)
+    PRIMARY KEY (`id`),
+    KEY `identifier` (`identifier`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `jobs` (

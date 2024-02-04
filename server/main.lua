@@ -3,6 +3,7 @@ UgDev                       = { }
 
 UgCore.Config               = UGConfig
 UgCore.Shared               = UGShared
+UgCore.Version              = json.decode(LoadResourceFile(GetCurrentResourceName(), 'version.json'))
 
 UgCore.ClientCallbacks      = { }
 

@@ -208,22 +208,22 @@ function UgCore.Functions.CreateJob(name, label, grades)
         }
 	end
 
-	MySQL.insert('INSERT IGNORE INTO jobs (name, label) VALUES (?, ?)', { name, label })
-	MySQL.prepare('INSERT INTO jobgrades (jobName, grade, name, label, salary) VALUES (?, ?, ?, ?, ?)', parameters)
+	MySQL.insert('INSERT IGNORE INTO `jobs` (`name`, `label`) VALUES (?, ?)', { name, label })
+	MySQL.prepare('INSERT INTO `jobgrades` (`jobName`, `grade`, `name`, `label`, `salary`) VALUES (?, ?, ?, ?, ?)', parameters)
 
 	UgCore.Jobs[name] = job
 end
 
 function UgCore.Functions.RefreshJobs()
-    local Jobs = {}
-	local jobs = MySQL.query.await('SELECT * FROM jobs')
+    local Jobs = { }
+	local jobs = MySQL.query.await('SELECT * FROM `jobs`')
 
 	for _, v in ipairs(jobs) do
 		Jobs[v.name] = v
-		Jobs[v.name].grades = {}
+		Jobs[v.name].grades = { }
 	end
 
-	local jobGrades = MySQL.query.await('SELECT * FROM jobgrades')
+	local jobGrades = MySQL.query.await('SELECT * FROM `jobgrades`')
 
 	for _, v in ipairs(jobGrades) do
 		if Jobs[v.jobName] then
@@ -254,6 +254,17 @@ function UgCore.Functions.RefreshJobs()
 	else
 		UgCore.Jobs = Jobs
 	end
+end
+
+function UgCore.Functions.RefreshItems()
+    local Items = { }
+    local items = MySQL.query.await('SELECT * FROM `items`')
+
+    for _, v in pairs(items) do
+        Items[v.name] = v
+    end
+
+    UgCore.Items = Items
 end
 
 function UgCore.Functions.CreateVehicle(model, coords, heading, properties, cb)

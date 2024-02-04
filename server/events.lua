@@ -416,16 +416,8 @@ end
 
 MySQL.ready(function()
 	UgCore.DatabaseConnected = true
-	local items = MySQL.query.await('SELECT * FROM items')
-	for _, v in ipairs(items) do
-		UgCore.Items[v.name] = { label = v.label, weight = v.weight, rare = v.rare, canRemove = v.canRemove }
-	end
+	UgCore.Functions.RefreshItems()
 	UgCore.Functions.RefreshJobs()
-	print('^7[ug-core]: ====================================')
-	print('^7[ug-core]: Framework Started Successfully!')
-	print('^7[ug-core]: ')
-	print('^7[ug-core]: Copyright (C) 2024 UgDev, Inc.')
-	print('^7[ug-core]: All Rights Reserved!')
-	print('^7[ug-core]: ====================================')
+	UgCore.CheckVersion()
 	StartDBSync()
 end)

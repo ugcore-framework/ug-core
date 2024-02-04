@@ -1,0 +1,45 @@
+function UgCore.CheckVersion()
+    local updatePath = 'https://raw.githubusercontent.com/ugcore-framework/ug-core/main/version'
+    PerformHttpRequest(updatePath, function (status, body, headers, errorData)
+        local data = json.decode(body)
+        local currentVersion = UgCore.Version.Version
+
+        if currentVersion ~= data.Version and tonumber(currentVersion) < tonumber(data.Version) then
+            print('^7[ug-core]: ====================================')
+	        print('^7[ug-core]: ^2Framework Started Successfully!^7')
+	        print('^7[ug-core]: ')
+            print('^7[ug-core]: ^3Checking updates...^7')
+            print('^7[ug-core]: ^3New Update Found!^7')
+            print('^7[ug-core]: ^3Your Version: ^1' .. currentVersion .. '^7')
+            print('^7[ug-core]: ^3New Version: ^2' .. data.Version .. '^7')
+            print('^7[ug-core]: ^3Changelogs: ^2' .. data.Changelogs .. '^7')
+            print('^7[ug-core]: ')
+            print('^7[ug-core]: ^3Update the framework here:')
+            print('^7[ug-core]: ^3https://github.com/ugcore-framework/ug-core/releases')
+            print('^7[ug-core]: ')
+	        print('^7[ug-core]: Copyright (C) 2024 UgDev, Inc.')
+	        print('^7[ug-core]: All Rights Reserved!')
+	        print('^7[ug-core]: ====================================')
+        elseif tonumber(currentVersion) > tonumber(data.Version) then
+            print('^7[ug-core]: ====================================')
+	        print('^7[ug-core]: ^2Framework Started Successfully!^7')
+	        print('^7[ug-core]: ')
+            print('^7[ug-core]: ^3Checking updates...^7')
+            print('^7[ug-core]: ^1Error on getting the updates!^7')
+            print('^7[ug-core]: ')
+	        print('^7[ug-core]: Copyright (C) 2024 UgDev, Inc.')
+	        print('^7[ug-core]: All Rights Reserved!')
+	        print('^7[ug-core]: ====================================')
+        else
+            print('^7[ug-core]: ====================================')
+	        print('^7[ug-core]: ^2Framework Started Successfully!^7')
+	        print('^7[ug-core]: ')
+            print('^7[ug-core]: ^3Checking updates...^7')
+            print('^7[ug-core]: ^2ug-core is updated!^7')
+            print('^7[ug-core]: ')
+	        print('^7[ug-core]: Copyright (C) 2024 UgDev, Inc.')
+	        print('^7[ug-core]: All Rights Reserved!')
+	        print('^7[ug-core]: ====================================')
+        end
+    end, 'GET')
+end

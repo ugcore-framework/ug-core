@@ -10,6 +10,7 @@ url 'https://github.com/UgDevOfc/ug-core'
 ui_page 'html/index.html'
 
 shared_scripts {
+    'version.lua',
     'languages.lua',
     'languages/*.lua',
     'shared/*.lua',
@@ -29,6 +30,7 @@ client_scripts {
 server_scripts {
     '@oxmysql/lib/MySQL.lua',
     'server/main.lua',
+    'server/version.lua',
     'server/callbacks.lua',
     'server/functions.lua',
     'server/player.lua',
@@ -36,7 +38,7 @@ server_scripts {
     'server/commands.lua',
     'server/threads.lua',
     'server/onesync.lua',
-    'server/exports.lua'
+    'server/exports.lua',
 }
 
 files {
