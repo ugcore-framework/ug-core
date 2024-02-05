@@ -62,7 +62,7 @@ AddEventHandler('chatMessage', function(playerId, _, message)
 	end
 end)
 
-AddEventHandler('playerDropped', function(reason)
+AddEventHandler('playerDropped', function (reason)
 	local playerId = source
 	local player = UgCore.Functions.GetPlayer(playerId)
 
@@ -72,7 +72,7 @@ AddEventHandler('playerDropped', function(reason)
 		local currentJob = UgCore.JobsPlayerCount[job]
 		UgCore.JobsPlayerCount[job] = ((currentJob and currentJob > 0) and currentJob or 1) - 1
 		GlobalState[("%s:count"):format(job)] = UgCore.JobsPlayerCount[job]
-		UgCore.PlayersByIdentifier[player.license] = nil
+		UgCore.PlayersByIdentifier[player.identifier] = nil
 		UgCore.Player.SavePlayer(player, function()
 			UgCore.Players[playerId] = nil
 		end)

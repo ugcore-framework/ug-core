@@ -216,7 +216,7 @@ function UgCore.Player.CreatePlayer(playerId, identifier, data)
 				self.accounts[account.index].money = self.accounts[account.index].money + amount
 
 				self.Functions.TriggerEvent('ug-core:SetMoney', account)
-				TriggerEvent('ug-core:SetMoney', self.source, accountName, money, reason)
+				TriggerEvent('ug-core:SetMoney', self.source, accountName, amount, reason)
 			else
 				error(('The account "%s" does not exists!'):format(accountName, self.playerId))
 			end
@@ -239,7 +239,7 @@ function UgCore.Player.CreatePlayer(playerId, identifier, data)
 				self.accounts[account.index].money = self.accounts[account.index].money - amount
 
 				self.Functions.TriggerEvent('ug-core:SetMoney', account)
-				TriggerEvent('ug-core:SetMoney', self.source, accountName, money, reason)
+				TriggerEvent('ug-core:SetMoney', self.source, accountName, amount, reason)
 			else
 				error(('The account "%s" does not exists!'):format(accountName, self.playerId))
 			end
