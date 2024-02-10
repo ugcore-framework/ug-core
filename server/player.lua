@@ -972,16 +972,25 @@ end
 function UgCore.Player.PlayerJoined(playerId)
     local identifier = UgCore.Functions.GetIdentifier(playerId)
     if identifier then
-        if UgCore.Functions.GetPlayerFromIdentifier(identifier) then
-            UgCore.Functions.KickPlayer(playerId, 'UgCore', Languages.GetTranslation('player_already_ingame'), true, true)
-        else
-            local result = MySQL.scalar.await('SELECT 1 FROM users WHERE identifier = ?', { identifier })
-            if result then
-                UgCore.Player.LoadPlayer(identifier, playerId, false)    
-            else
-                UgCore.Player.CreateNewPlayer(identifier, playerId)
-            end
-        end
+        if UgCore.Config.Core.Server.CheckDuplicatedLicense then
+			if UgCore.Functions.GetPlayerFromIdentifier(identifier) then
+				UgCore.Functions.KickPlayer(playerId, 'UgCore', Languages.GetTranslation('player_already_ingame'), true, true)
+			else
+				local result = MySQL.scalar.await('SELECT 1 FROM users WHERE identifier = ?', { identifier })
+				if result then
+					UgCore.Player.LoadPlayer(identifier, playerId, false)    
+				else
+					UgCore.Player.CreateNewPlayer(identifier, playerId)
+				end
+			end
+		else
+			local result = MySQL.scalar.await('SELECT 1 FROM users WHERE identifier = ?', { identifier })
+			if result then
+				UgCore.Player.LoadPlayer(identifier, playerId, false)    
+			else
+				UgCore.Player.CreateNewPlayer(identifier, playerId)
+			end
+		end
     else
         UgCore.Functions.KickPlayer(playerId, 'UgCore', Languages.GetTranslation('identifier_missing'), true, true)
     end
