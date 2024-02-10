@@ -12,16 +12,16 @@ UGConfig.Messages   = {
 }
 
 UGConfig.Core       = {
+	-- Server general settings. --
+	Server = {
+		CheckDuplicatedLicense = true		-- Check if there is already a license in the server.
+	},
+
     -- Settings for the paycheck of players. --
     PayCheck = {
         Enabled = true,                     -- Check if you want to enable this or not.
         Society = false,                    -- Payments directly from the job's money (requires ug-society)
         Interval = 30,                      -- Interval during paychecks in minutes
-    },
-
-    -- Settings for the characters. --
-    Multicharacter = {
-        Enabled = false   -- Check if you want to use them multicharacter system (requires ug-multicharacter).
     },
 
     -- Settings for the inventory system. --

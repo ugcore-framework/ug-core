@@ -42,8 +42,12 @@ if not UgCore.Dependencies.MultiCharacter then
 		end
 	
 		if identifier then
-			if UgCore.Functions.GetPlayerFromIdentifier(identifier) then
-				return UgCore.Functions.KickPlayer(playerId, 'UgCore', Languages.GetTranslation('player_already_ingame'), nil, deferrals)
+			if UgCore.Config.Core.Server.CheckDuplicatedLicense then
+				if UgCore.Functions.GetPlayerFromIdentifier(identifier) then
+					return UgCore.Functions.KickPlayer(playerId, 'UgCore', Languages.GetTranslation('player_already_ingame'), nil, deferrals)
+				else
+					return deferrals.done()
+				end
 			else
 				return deferrals.done()
 			end

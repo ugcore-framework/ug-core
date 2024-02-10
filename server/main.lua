@@ -27,7 +27,7 @@ UgCore.OneSyncState         = GetConvar('onesync', 'off')
 UgCore.DatabaseConnected    = false
 
 UgCore.Dependencies         = {
-    MultiCharacter = UgCore.Config.Core.Multicharacter.Enabled
+    MultiCharacter = false              -- Still in work
 }
 
 exports('GetCore', function ()
