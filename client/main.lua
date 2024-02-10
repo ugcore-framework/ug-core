@@ -12,7 +12,7 @@ UgCore.Input            = { }
 UgCore.Pickups          = { }
 
 UgCore.Dependencies     = {
-    MultiCharacter = UgCore.Config.Core.Multicharacter.Enabled,
+    MultiCharacter = false              -- Still in work
 }
 
 UgCore.MismatchedTypes = {
