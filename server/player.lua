@@ -652,7 +652,7 @@ end
 
 function UgCore.Player.LoadPlayer(identifier, playerId, isNew)
     local multiCharacter = UgCore.Dependencies.MultiCharacter
-    local result = { }
+    local result = MySQL.prepare.await('SELECT * FROM `users` WHERE `identifier` = ?', { identifier })
     local userData = { 
         accounts    = { },
         inventory   = { },
@@ -662,12 +662,6 @@ function UgCore.Player.LoadPlayer(identifier, playerId, isNew)
         weight      = 0,
         metadata    = { }
     }
-    
-    if multiCharacter then
-        result = MySQL.prepare.await('SELECT `money`, `job`, `group`, `position`, `inventory`, `skin`, `loadout`, `metadata`, `firstName`, `lastName`, `dateOfBirth`, `sex`, `weight` FROM `users` WHERE `identifier` = ?', { identifier })
-    else
-        result = MySQL.prepare.await('SELECT `money`, `job`, `group`, `position`, `inventory`, `skin`, `loadout`, `metadata` FROM `users` WHERE `identifier` = ?', { identifier })
-    end
 
     local job           = json.decode(result.job)
     local jobName       = job.job
