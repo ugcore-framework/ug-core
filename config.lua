@@ -34,7 +34,31 @@ UGConfig.Core       = {
         Enabled = false,                    -- Check if you want to enable.
     },
 
-    -- Settings for the vehicle plates of the vehicles. --
+	-- Settings for the discord rich presence. --
+	Discord = {
+		Enabled 		= true,												-- Check if you want to enable.
+		IntervalTime 	= 60,												-- Interval update time in seconds.
+		AppID	 		= '1198352494208745653',							-- Discord Application ID.
+		Description     = 'A FiveM Server using UgCore Framework.',			-- Description of the logo.
+        LargeLogo       = 'logo',											-- Large logo name.
+        SmallLogo       = 'ugdev',											-- Small logo name.
+        LargeLogoText   = 'UgCore',											-- Large logo text.
+        SmallLogoText   = 'This Server is using UgCore Made by UgDev.',		-- Small logo text.
+        Buttons = {
+            {
+                Name = 'Play',
+                Link = 'fivem://connect/127.0.0.1',
+                Icon = '🎮'
+            },
+            {
+                Name = 'Framework GitHub',
+                Link = 'https://github.com/ugcore-framework/ug-core',
+                Icon = '🔗'
+            }
+        }
+	},
+
+    -- Settings for the vehicle plates. --
     Plates = {
         CustomPlate = '........'            -- Custom plate for vehicles (Use the placeholders below) (Max. 8 characters)
         

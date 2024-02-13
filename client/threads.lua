@@ -176,3 +176,20 @@ CreateThread(function()
         Wait(200)
     end
 end)
+
+if UgCore.Config.Core.Discord.Enabled then
+    CreateThread(function ()
+        while true do
+            SetDiscordAppId(UgCore.Config.Core.Discord.AppID)
+            SetRichPresence(UgCore.Config.Core.Discord.Description)
+            SetDiscordRichPresenceAsset(UgCore.Config.Core.Discord.LargeLogo)
+            SetDiscordRichPresenceAssetText(UgCore.Config.Core.Discord.LargeLogoText)
+            SetDiscordRichPresenceAssetSmall(UgCore.Config.Core.Discord.SmallLogo)
+            SetDiscordRichPresenceAssetSmallText(UgCore.Config.Core.Discord.SmallLogoText)
+            for k, v in pairs(UgCore.Config.Core.Discord.Buttons) do
+                SetDiscordRichPresenceAction(k, v.Icon .. ' ' .. v.Name, v.Link)
+            end
+            Wait(1000 * UgCore.Config.Core.Discord.IntervalTime)
+        end
+    end)
+end
