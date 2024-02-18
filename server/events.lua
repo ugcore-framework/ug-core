@@ -46,6 +46,10 @@ if not UgCore.Dependencies.MultiCharacter then
 				if UgCore.Functions.GetPlayerFromIdentifier(identifier) then
 					return UgCore.Functions.KickPlayer(playerId, 'UgCore', Languages.GetTranslation('player_already_ingame'), nil, deferrals)
 				else
+					UgCore.Functions.SendLogFields('Join', 'Player Joining the Server', 'A player is joining the server.', 'green', {
+						{ name = 'Identifier', value = identifier, inline = false },
+						{ name = 'Player Name', value = GetPlayerName(playerId), inline = false }
+					})
 					return deferrals.done()
 				end
 			else
@@ -59,6 +63,11 @@ end
 
 AddEventHandler('chatMessage', function(playerId, _, message)
 	local player = UgCore.Functions.GetPlayer(playerId)
+	UgCore.Functions.SendLogFields('Chat', 'New Chat Message', 'A player has just typed something in the chat.', 'green', {
+		{ name = 'Identifier', value = player.Functions.GetIdentifier(), inline = false },
+		{ name = 'Player Name', value = player.Functions.GetSteamName(), inline = false },
+		{ name = 'Message', value = message, inline = false },
+	})
 	if message:sub(1, 1) == '/' and playerId > 0 then
 		CancelEvent()
 		local commandName = message:sub(1):gmatch("%w+")()
@@ -71,6 +80,11 @@ AddEventHandler('playerDropped', function (reason)
 	local player = UgCore.Functions.GetPlayer(playerId)
 
 	if player then
+		UgCore.Functions.SendLogFields('Left', 'Player Left the Server', 'A player has just left the server.', 'red', {
+			{ name = 'Identifier', value = player.Functions.GetIdentifier(), inline = false },
+			{ name = 'Player Name', value = player.Functions.GetSteamName(), inline = false },
+			{ name = 'Reason', value = reason, inline = false },
+		})
 		TriggerEvent('ug-core:PlayerDropped', playerId, reason)
 		local job = player.Functions.GetJob().name
 		local currentJob = UgCore.JobsPlayerCount[job]

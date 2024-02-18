@@ -117,26 +117,28 @@ end
 
 function UgCore.Functions.SendLog(type, title, message, color)
     if UgCore.Config.Core.Logs[type] then
-        local webhook = UgCore.Config.Core.Logs[type].Webhook
-        local embedData = { {
-            ['title'] = title,
-            ['color'] = UgCore.Config.Core.Logs.Colors[color] or UgCore.Config.Core.Logs.Colors.default,
-            ['footer'] = {
-                ['text'] = "🐌 - UgCore Logs - " .. os.date(),
-                ['icon_url'] = ""
-            },
-            ['description'] = message,
-            ['author'] = {
-                ['name'] = "UgCore Framework by UgDev",
-                ['icon_url'] = ""
-            }
-        } }
-        PerformHttpRequest(webhook, nil, 'POST', json.encode({
-            username = 'UgCore Framework',
-            embeds = embedData
-        }), {
-            ['Content-Type'] = 'application/json'
-        })
+        if UgCore.Config.Core.Logs[type].Enabled then
+            local webhook = UgCore.Config.Core.Logs[type].Webhook
+            local embedData = { {
+                ['title'] = title,
+                ['color'] = UgCore.Config.Core.Logs.Colors[color] or UgCore.Config.Core.Logs.Colors.default,
+                ['footer'] = {
+                    ['text'] = "🐌 - UgCore Logs - " .. os.date(),
+                    ['icon_url'] = ""
+                },
+                ['description'] = message,
+                ['author'] = {
+                    ['name'] = "UgCore Framework by UgDev",
+                    ['icon_url'] = ""
+                }
+            } }
+            PerformHttpRequest(webhook, nil, 'POST', json.encode({
+                username = 'UgCore Framework',
+                embeds = embedData
+            }), {
+                ['Content-Type'] = 'application/json'
+            })
+        end
     else
         error(('Invalid Log Type "%s".'):format(type))
     end
@@ -144,27 +146,29 @@ end
 
 function UgCore.Functions.SendLogFields(type, title, message, color, fields)
     if UgCore.Config.Core.Logs[type] then
-        local webhook = UgCore.Config.Core.Logs[type].Webhook
-        local embedData = { {
-            ['title'] = title,
-            ['color'] = UgCore.Config.Core.Logs.Colors[color] or UgCore.Config.Core.Logs.Colors.default,
-            ['footer'] = {
-                ['text'] = "🐌 - UgCore Logs - " .. os.date(),
-                ['icon_url'] = ""
-            },
-            ['fields'] = fields,
-            ['description'] = message,
-            ['author'] = {
-                ['name'] = "UgCore Framework by UgDev",
-                ['icon_url'] = ""
-            }
-        } }
-        PerformHttpRequest(webhook, nil, 'POST', json.encode({
-            username = 'UgCore Framework',
-            embeds = embedData
-        }), {
-            ['Content-Type'] = 'application/json'
-        })
+        if UgCore.Config.Core.Logs[type].Enabled then
+            local webhook = UgCore.Config.Core.Logs[type].Webhook
+            local embedData = { {
+                ['title'] = title,
+                ['color'] = UgCore.Config.Core.Logs.Colors[color] or UgCore.Config.Core.Logs.Colors.default,
+                ['footer'] = {
+                    ['text'] = "🐌 - UgCore Logs - " .. os.date(),
+                    ['icon_url'] = ""
+                },
+                ['fields'] = fields,
+                ['description'] = message,
+                ['author'] = {
+                    ['name'] = "UgCore Framework by UgDev",
+                    ['icon_url'] = ""
+                }
+            } }
+            PerformHttpRequest(webhook, nil, 'POST', json.encode({
+                username = 'UgCore Framework',
+                embeds = embedData
+            }), {
+                ['Content-Type'] = 'application/json'
+            })
+        end
     else
         error(('Invalid Log Type "%s".'):format(type))
     end

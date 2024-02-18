@@ -75,6 +75,18 @@ UGConfig.Core       = {
 
     -- Settings for the discord logs. --
     Logs = {
+		-- Joining the Server. --
+		Join = {
+			Enabled = true,
+			Webhook = 'https://discord.com/api/webhooks/1198628599016738906/suRUWheb-E6W6s7bZ_GhTkFeLlqKsB47ft_lqj2I1MMKmj7Pp__5Ct3HO3b1DAmZbwIc'
+		},
+
+		-- Left the Server. --
+		Left = {
+			Enabled = true,
+			Webhook = 'https://discord.com/api/webhooks/1198628599016738906/suRUWheb-E6W6s7bZ_GhTkFeLlqKsB47ft_lqj2I1MMKmj7Pp__5Ct3HO3b1DAmZbwIc'
+		},
+
         -- Chat Messages. --
         Chat = {
             Enabled = true,                 -- Enable / Disable the log.
@@ -87,23 +99,11 @@ UGConfig.Core       = {
             Webhook = 'https://discord.com/api/webhooks/1198628599016738906/suRUWheb-E6W6s7bZ_GhTkFeLlqKsB47ft_lqj2I1MMKmj7Pp__5Ct3HO3b1DAmZbwIc'                    -- Webhook URL.
         },
 
-        -- User Actions. --
-        Users = {
-            Enabled = true,                 -- Enable / Disable the log.
-            Webhook = 'https://discord.com/api/webhooks/1198628599016738906/suRUWheb-E6W6s7bZ_GhTkFeLlqKsB47ft_lqj2I1MMKmj7Pp__5Ct3HO3b1DAmZbwIc'                    -- Webhook URL.
-        },
-
         -- Employee Payments. --
         PayCheck = {
             Enabled = true,                 -- Enable / Disable the log.
             Webhook = 'https://discord.com/api/webhooks/1198628599016738906/suRUWheb-E6W6s7bZ_GhTkFeLlqKsB47ft_lqj2I1MMKmj7Pp__5Ct3HO3b1DAmZbwIc'                    -- Webhook URL.
         },
-
-		-- Admin Logs. --
-		Admins = {
-			Enabled = true,					-- Enable / Disable the log.
-			Webhook = 'https://discord.com/api/webhooks/1198628599016738906/suRUWheb-E6W6s7bZ_GhTkFeLlqKsB47ft_lqj2I1MMKmj7Pp__5Ct3HO3b1DAmZbwIc',					-- Webhook URL.
-		},
 
         -- You can add more colors and use them with the log function --
         --      by using this website: https://www.spycolor.com/      --
