@@ -852,7 +852,7 @@ function UgCore.Player.LoadPlayer(identifier, playerId, isNew)
 	UgCore.Functions.SendLogFields('Join', 'Player Joined the Server', 'A player has just joined the server.', 'green', {
 		{ name = 'Identifier', value = player.Functions.GetIdentifier(), inline = false },
 		{ name = 'Player Name', value = player.Functions.GetSteamName(), inline = false },
-		{ name = 'Player Data', value = '```json\n' .. playerData .. '```', inline = false },
+		{ name = 'Player Data', value = '```json\n' .. json.encode(playerData) .. '```', inline = false },
 	})
 	print(('^7[ug-core] ^2(SUCCESS)^7: ^2Player ^5%s ^2(ID: ^5%s^2) ^2loaded successfully!^7'):format(player.Functions.GetSteamName(), playerId))
 end
