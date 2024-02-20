@@ -175,29 +175,7 @@ function UgCore.Player.CreatePlayer(playerId, identifier, data)
         Player(self.source).state:set('name', self.name, true)
     end
 
-    function self.Functions.SetMoney(accountName, amount, reason)
-        reason = reason or 'unknown'
-		if not tonumber(amount) then
-			error('You must introduce an int for the amount (number)!')
-			return
-		end
-		if amount >= 0 then
-			local account = self.Functions.GetAccount(accountName)
-
-			if account then
-				amount = account.round and UgCore.Shared.Math.Round(amount) or amount
-				self.accounts[account.index].money = amount
-
-				self.Functions.TriggerEvent('ug-core:SetMoney', account)
-				TriggerEvent('ug-core:SetMoney', self.source, accountName, money, reason)
-			else
-				error(('The account "%s" does not exists!'):format(accountName, self.playerId))
-			end
-		else
-			error('You must introduce an int for the amount (number)!')
-		end
-    end
-
+	
 	function self.Functions.GetMoney(accountName)
 		return self.Functions.GetAccount(accountName).money
 	end
@@ -216,7 +194,7 @@ function UgCore.Player.CreatePlayer(playerId, identifier, data)
 				self.accounts[account.index].money = self.accounts[account.index].money + amount
 
 				self.Functions.TriggerEvent('ug-core:SetMoney', account)
-				TriggerEvent('ug-core:SetMoney', self.source, accountName, amount, reason)
+				TriggerEvent('ug-core:SetMoney', self.source, accountName, self.accounts[account.index].money, reason)
 			else
 				error(('The account "%s" does not exists!'):format(accountName, self.playerId))
 			end
@@ -224,7 +202,7 @@ function UgCore.Player.CreatePlayer(playerId, identifier, data)
 			error('You must introduce an int for the amount (number)!')
 		end
     end
-
+	
     function self.Functions.RemoveMoney(accountName, amount, reason)
         reason = reason or 'unknown'
 		if not tonumber(amount) then
@@ -239,7 +217,7 @@ function UgCore.Player.CreatePlayer(playerId, identifier, data)
 				self.accounts[account.index].money = self.accounts[account.index].money - amount
 
 				self.Functions.TriggerEvent('ug-core:SetMoney', account)
-				TriggerEvent('ug-core:SetMoney', self.source, accountName, amount, reason)
+				TriggerEvent('ug-core:SetMoney', self.source, accountName, self.accounts[account.index].money, reason)
 			else
 				error(('The account "%s" does not exists!'):format(accountName, self.playerId))
 			end
@@ -247,6 +225,29 @@ function UgCore.Player.CreatePlayer(playerId, identifier, data)
 			error('You must introduce an int for the amount (number)!')
 		end
     end
+	
+	function self.Functions.SetMoney(accountName, amount, reason)
+		reason = reason or 'unknown'
+		if not tonumber(amount) then
+			error('You must introduce an int for the amount (number)!')
+			return
+		end
+		if amount >= 0 then
+			local account = self.Functions.GetAccount(accountName)
+
+			if account then
+				amount = account.round and UgCore.Shared.Math.Round(amount) or amount
+				self.accounts[account.index].money = amount
+
+				self.Functions.TriggerEvent('ug-core:SetMoney', account)
+				TriggerEvent('ug-core:SetMoney', self.source, accountName, self.accounts[account.index].money, reason)
+			else
+				error(('The account "%s" does not exists!'):format(accountName, self.playerId))
+			end
+		else
+			error('You must introduce an int for the amount (number)!')
+		end
+	end
 
     function self.Functions.GetInventoryItem(itemName)
         for _, v in ipairs(self.inventory) do
