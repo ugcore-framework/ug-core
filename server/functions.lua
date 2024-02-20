@@ -48,7 +48,7 @@ local function CheckTable(key, val, player, xPlayers)
 	end
 end
 
-function UgCore.Functions.GetUgPlayers(key, value)
+function UgCore.Functions.GetUGPlayers(key, value)
     local players = { }
     if type(value) == 'table' then
         for _, v in pairs(UgCore.Players) do
