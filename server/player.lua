@@ -395,11 +395,11 @@ function UgCore.Player.CreatePlayer(playerId, identifier, data)
     function self.Functions.GiveComponent(weapon, component)
         local loadoutNum, weapon = self.Functions.GetWeapon(weapon)
 		if weapon then
-			local component = UgCore.Functions.GetComponent(weapon, component)
+			local component = UgCore.Shared.GetWeaponComponent(weapon, component)
 			if component then
 				if not self.Functions.Hascomponent(weapon, component) then
 					self.loadout[loadoutNum].components[#self.loadout[loadoutNum].components + 1] = component
-					local componentHash = UgCore.Functions.Getcomponent(weapon, component).hash
+					local componentHash = UgCore.Shared.GetWeaponComponent(weapon, component).hash
 					GivecomponentToPed(GetPlayerPed(self.source), joaat(weapon), componentHash)
 					self.Functions.TriggerEvent('ug-core:GiveItem', component.label, false, true)
 				end
