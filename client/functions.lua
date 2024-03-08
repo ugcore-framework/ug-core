@@ -466,7 +466,7 @@ function UgCore.Functions.GetVehicleInDirection()
     return nil
 end
 
-function UgCore.Functions.GetVehicleProperties()
+function UgCore.Functions.GetVehicleProps(vehicle)
     if not DoesEntityExist(vehicle) then
         return nil
     end
