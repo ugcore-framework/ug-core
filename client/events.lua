@@ -2,7 +2,7 @@ AddEventHandler('onResourceStop', function (resourceName)
 	for i = 1, #UgCore.Menus.Openned, 1 do
         if UgCore.Menus.Openned[i] then
             if UgCore.Menus.Openned[i].resourceName == resourceName or UgCore.Menus.Openned[i].namespace == resourceName then
-                UgCore.Menus.Openned[i].close()
+                UgCore.Menus.Openned[i].Functions.Close()
                 UgCore.Menus.Openned[i] = nil
             end
         end

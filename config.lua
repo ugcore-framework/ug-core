@@ -12,6 +12,14 @@ UGConfig.Messages   = {
 }
 
 UGConfig.Core       = {
+	-- Settings for the maintenance system. --
+	Maintenance = {
+		Enabled = false,
+		AdminsAuthorized = {	-- Must be identifiers type License!
+			'license:'			
+		}
+	},
+
 	-- Server general settings. --
 	Server = {
 		CheckDuplicatedLicense = true		-- Check if there is already a license in the server.

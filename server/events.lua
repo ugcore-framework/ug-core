@@ -42,18 +42,27 @@ if not UgCore.Dependencies.MultiCharacter then
 		end
 	
 		if identifier then
-			if UgCore.Config.Core.Server.CheckDuplicatedLicense then
-				if UgCore.Functions.GetPlayerFromIdentifier(identifier) then
-					return UgCore.Functions.KickPlayer(playerId, 'UgCore', Languages.GetTranslation('player_already_ingame'), nil, deferrals)
+			if UgCore.Config.Core.Maintenance.Enabled then
+				for _, v in pairs(UgCore.Config.Core.Maintenance.AdminsAuthorized) do
+					if string.gsub(v, 'license:', '') == identifier then
+						return deferrals.done()
+					end
+				end
+				return deferrals.done(UgCore.Config.Messages.MaintenanceMessage)
+			else
+				if UgCore.Config.Core.Server.CheckDuplicatedLicense then
+					if UgCore.Functions.GetPlayerFromIdentifier(identifier) then
+						return UgCore.Functions.KickPlayer(playerId, 'UgCore', Languages.GetTranslation('player_already_ingame'), nil, deferrals)
+					else
+						UgCore.Functions.SendLogFields('Join', 'Player Joining the Server', 'A player is joining the server.', 'green', {
+							{ name = 'Identifier', value = identifier, inline = false },
+							{ name = 'Player Name', value = GetPlayerName(playerId), inline = false }
+						})
+						return deferrals.done()
+					end
 				else
-					UgCore.Functions.SendLogFields('Join', 'Player Joining the Server', 'A player is joining the server.', 'green', {
-						{ name = 'Identifier', value = identifier, inline = false },
-						{ name = 'Player Name', value = GetPlayerName(playerId), inline = false }
-					})
 					return deferrals.done()
 				end
-			else
-				return deferrals.done()
 			end
 		else
 			return UgCore.Functions.KickPlayer(playerId, 'UgCore', Languages.GetTranslation('identifier_missing'), nil, deferrals)
