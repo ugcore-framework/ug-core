@@ -96,7 +96,7 @@ function UgCore.Menus.Functions.CloseMenu(menuType, namespace, name)
         if UgCore.Menus.Openned[i] then
             if UgCore.Menus.Openmed[i].type == menuType and UgCore.Menus.Opemned[i].namespace == namespace and
                 UgCore.Menus.Openned[i].name == name then
-                UgCore.Menus.Openned[i].close()
+                UgCore.Menus.Openned[i].Functions.Close()
                 UgCore.Menus.Openned[i] = nil
             end
         end
@@ -106,7 +106,7 @@ end
 function UgCore.Menus.Functions.CloseAllMenus()
     for i = 1, #UgCore.Menus.Openned, 1 do
         if UgCore.Menus.Openned[i] then
-            UgCore.Menus.Openned[i].close()
+            UgCore.Menus.Openned[i].Functions.Close()
             UgCore.Menus.Openned[i] = nil
         end
     end
